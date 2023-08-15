@@ -49,12 +49,12 @@ const technologies = [
 
 export default function Skills() {
     return (
-        <section className="w-full my-20">
+        <section id="skills" className="w-full my-20">
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title='Habilidades' icon={PiShapes} />
                     <TitleSection title='Minhas ' span='Habilidades' />
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>
+                    <div className='w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-5 gap-10'>
                         {technologies.map((technology, index) => (
                             <div key={index} className='group flex flex-col items-center justify-center border border-neutral-600 hover:border-intense-blue transition-all duration-500 p-8 rounded-full'>
                                 <technology.icon size={60} />

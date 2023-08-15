@@ -52,7 +52,7 @@ const resumeData = {
 
 export default function Resume() {
     return (
-        <section className="w-full my-20">
+        <section id="resume" className="w-full my-20">
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title="Currículo" icon={BsBriefcase} />

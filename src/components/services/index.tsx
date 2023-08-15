@@ -35,7 +35,7 @@ const specializations = [
 
 export default function Services() {
     return (
-        <section className="w-full my-20">
+        <section id="services" className="w-full my-20">
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title="Serviços" icon={LiaStreamSolid} />

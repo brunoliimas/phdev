@@ -4,7 +4,7 @@ import { BsPerson } from 'react-icons/bs'
 
 export default function About() {
     return (
-        <section className="w-full my-20">
+        <section id="about" className="w-full my-20">
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title='Sobre' icon={BsPerson} />

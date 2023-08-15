@@ -39,7 +39,7 @@ const projects = [
 
 export default function Projects() {
     return (
-        <section className="w-full my-20">
+        <section id="projects" className="w-full my-20">
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title='Portfólio' icon={BsFileCode} />
