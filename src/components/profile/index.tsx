@@ -5,7 +5,7 @@ import { FiMail } from 'react-icons/fi'
 export default function Profile() {
     return (
         <>
-            <div className="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center max-w-sm w-full border border-neutral-600 rounded-3xl p-10">
+            <div className="hidden fixed left-4 top-1/2 -translate-y-1/2 lg:flex flex-col items-center justify-center max-w-sm w-full border border-neutral-600 rounded-3xl p-10">
                 <div className="w-full flex justify-between mb-9">
                     <Image
                         src="/profile/logo_PHDev.svg"

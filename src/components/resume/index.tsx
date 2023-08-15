@@ -1,6 +1,7 @@
 import { Tag } from "../ui/tag"
 import { TitleSection } from "../ui/titleSection"
 import { BsBriefcase } from 'react-icons/bs'
+import { AiOutlineDownload } from 'react-icons/ai'
 
 const styleBefore = "before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-neutral-300 hover:before:bg-intense-blue before:transition-all before:duration-500"
 const styleAfter = "after:absolute after:left-[6px] after:top-3 after:w-px after:h-full after:bg-neutral-100 after:-z-10 after:opacity-10"
@@ -90,6 +91,10 @@ export default function Resume() {
                             </div>
                         ))}
                     </div>
+                    <a href="" download className="flex items-center text-xl uppercase px-8 py-2 bg-intense-blue rounded-full border-2 border-intense-blue hover:bg-transparent transition-all duration-500 hover:text-intense-blue">
+                        <AiOutlineDownload size={30} className="mr-2" />
+                        Baixar CV
+                    </a>
                 </div>
             </div>
         </section>

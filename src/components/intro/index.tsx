@@ -10,7 +10,7 @@ export default function Intro() {
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title='Introdução' icon={AiOutlineHome}/>
-                    <h1 className="text-6xl leading-tight mb-10">Olá, eu sou o <span className='text-intense-blue'>Pedro</span>, Desenvolvedor Back End e Mobile</h1>
+                    <h1 className="text-4xl lg:text-6xl leading-tight mb-10">Olá, eu sou o <span className='text-intense-blue'>Pedro</span>, Desenvolvedor Back End e Mobile</h1>
                     <p className='max-w-md mb-8'>Transformando linhas de código em experiências interativas, do servidor ao dispositivo móvel.</p>
                     <a href="" className='relative flex items-center justify-center p-4 border border-neutral-600 rounded-full ml-auto mr-4'>
                         <Image
