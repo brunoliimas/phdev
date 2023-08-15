@@ -24,12 +24,12 @@ export default function Intro() {
                     </a>
                     <div className="w-full flex gap-16 mt-12">
                         <div>
-                            <h3 className="text-5xl text-intense-blue mb-4">+10</h3>
-                            <p className="text-base uppercase">de experiência</p>
+                            <h3 className="text-3xl md:text-5xl text-intense-blue mb-4">+10</h3>
+                            <p className="text-sm md:text-base uppercase">de experiência</p>
                         </div>
                         <div>
-                            <h3 className="text-5xl text-intense-blue mb-4">+154</h3>
-                            <p className="text-base uppercase">Projetos concluídos</p>
+                            <h3 className="text-3xl md:text-5xl text-intense-blue mb-4">+154</h3>
+                            <p className="text-sm md:text-base uppercase">Projetos concluídos</p>
                         </div>
                     </div>
                 </div>

@@ -91,8 +91,8 @@ export default function Resume() {
                             </div>
                         ))}
                     </div>
-                    <a href="" download className="flex items-center text-xl uppercase px-8 py-2 bg-intense-blue rounded-full border-2 border-intense-blue hover:bg-transparent transition-all duration-500 hover:text-intense-blue">
-                        <AiOutlineDownload size={30} className="mr-2" />
+                    <a href="" download className="flex items-center text-base uppercase px-6 py-2 bg-intense-blue rounded-full border-2 border-intense-blue hover:bg-transparent transition-all duration-500 hover:text-intense-blue">
+                        <AiOutlineDownload size={16} className="mr-2" />
                         Baixar CV
                     </a>
                 </div>
