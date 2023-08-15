@@ -103,7 +103,7 @@ export const Menu = () => {
                     ))}
                 </ul>
             </nav>
-            <button className={`bg-neutral-900 p-3 border border-neutral-600 rounded-full fixed top-4 right-4 md:hidden ${menuOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
+            <button className={`bg-intense-blue p-3 border border-neutral-600 rounded-full fixed top-4 right-4 md:hidden ${menuOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
                 <VscMenu size={25} />
             </button>
             {menuOpen &&
