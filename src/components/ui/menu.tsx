@@ -50,27 +50,36 @@ const links: LinkItem[] = [
 
 export const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [animate, setAnimate] = useState(false);
-    const [closing, setClosing] = useState(false);
+    const navRef = useRef(null);
+    const overflowRef = useRef(null);
 
-    useEffect(() => {
-        setAnimate(true);
-    }, []);
-
-    const handleCloseClick = () => {
-        setClosing(true);
-        setTimeout(() => {
-            toggleMenu();
-            setClosing(false);
-        }, 500);
-    };
-
+    const tlNav = gsap.timeline();
 
     useEffect(() => {
         if (menuOpen) {
             document.body.style.overflow = "hidden";
+
+            tlNav
+                .from(overflowRef.current, {
+                    duration: 1,
+                    xPercent: 130,
+                    ease: "power3.out",
+                })
+                .from(navRef.current, {
+                    duration: 1,
+                    xPercent: 130,
+                    delay: -1,
+                    ease: "power3.out",
+                })
+
         } else {
             document.body.style.overflow = "";
+
+            tlNav.to(navRef.current, {
+                duration: 10,
+                xPercent: 130,
+                ease: "power3.inOut",
+            });
         }
         return () => {
             document.body.style.overflow = "";
@@ -99,9 +108,9 @@ export const Menu = () => {
             </button>
             {menuOpen &&
                 <>
-                    <div className="w-full h-full fixed right-0 top-0 bg-intense-blue bg-opacity-50 z-40"></div>
-                    <nav
-                        className={`fixed top-0 right-0 w-4/5 h-full bg-neutral-900 p-10 z-50 ${animate ? (closing ? 'transition-transform duration-500 translate-x-full' : 'transition-transform duration-500 translate-x-0') : 'translate-x-full'}`}
+                    <div ref={overflowRef} className="w-full h-full fixed right-0 top-0 bg-intense-blue bg-opacity-50 z-40"></div>
+                    <nav ref={navRef}
+                        className={`fixed top-0 right-0 w-4/5 h-full bg-neutral-900 p-10 z-50`}
                     >
                         <ul className="flex flex-col gap-10">
                             {links.map((link, index) => (
@@ -113,7 +122,7 @@ export const Menu = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="absolute top-8 right-8 text-white" onClick={handleCloseClick}>
+                        <button className="absolute top-8 right-8 text-white" onClick={toggleMenu}>
                             <VscChromeClose size={30} />
                         </button>
                     </nav>
