@@ -1,11 +1,12 @@
 'use client'
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { AiOutlineHome } from "react-icons/ai"
 import { VscMenu, VscChromeClose } from "react-icons/vsc"
 import { BsPerson, BsBriefcase, BsFileCode } from "react-icons/bs"
 import { LiaStreamSolid } from "react-icons/lia"
 import { PiShapes } from "react-icons/pi"
+import { gsap } from "gsap"
 
 
 interface LinkItem {
@@ -49,6 +50,21 @@ const links: LinkItem[] = [
 
 export const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [animate, setAnimate] = useState(false);
+    const [closing, setClosing] = useState(false);
+
+    useEffect(() => {
+        setAnimate(true);
+    }, []);
+
+    const handleCloseClick = () => {
+        setClosing(true);
+        setTimeout(() => {
+            toggleMenu();
+            setClosing(false);
+        }, 500);
+    };
+
 
     useEffect(() => {
         if (menuOpen) {
@@ -85,10 +101,7 @@ export const Menu = () => {
                 <>
                     <div className="w-full h-full fixed right-0 top-0 bg-intense-blue bg-opacity-50 z-40"></div>
                     <nav
-                        className={`fixed top-0 right-0 w-4/5 h-full bg-neutral-900 p-10 z-50 ${menuOpen
-                                ? "transition-transform duration-1000 ease-in transform translate-x-0"
-                                : "transition-transform duration-1000 ease-out transform translate-x-full"
-                            }`}
+                        className={`fixed top-0 right-0 w-4/5 h-full bg-neutral-900 p-10 z-50 ${animate ? (closing ? 'transition-transform duration-500 translate-x-full' : 'transition-transform duration-500 translate-x-0') : 'translate-x-full'}`}
                     >
                         <ul className="flex flex-col gap-10">
                             {links.map((link, index) => (
@@ -100,7 +113,7 @@ export const Menu = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="absolute top-8 right-8 text-white" onClick={toggleMenu}>
+                        <button className="absolute top-8 right-8 text-white" onClick={handleCloseClick}>
                             <VscChromeClose size={30} />
                         </button>
                     </nav>
