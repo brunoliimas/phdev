@@ -6,7 +6,7 @@ import { VscMenu, VscChromeClose } from "react-icons/vsc"
 import { BsPerson, BsBriefcase, BsFileCode } from "react-icons/bs"
 import { LiaStreamSolid } from "react-icons/lia"
 import { PiShapes } from "react-icons/pi"
-import { gsap } from "gsap"
+import { motion, AnimatePresence, stagger } from 'framer-motion'
 
 
 interface LinkItem {
@@ -15,7 +15,7 @@ interface LinkItem {
     href: string;
 }
 
-const links: LinkItem[] = [
+const navLinks: LinkItem[] = [
     {
         icon: AiOutlineHome,
         label: "Home",
@@ -50,51 +50,64 @@ const links: LinkItem[] = [
 
 export const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const navRef = useRef(null);
-    const overflowRef = useRef(null);
+    const toggleMenu = () => {
+        setMenuOpen((prevOpen) => !prevOpen);
+    };
 
-    const tlNav = gsap.timeline();
+    const menuVars = {
+        initial: {
+            scaleX: 0,
+        },
+        animate: {
+            scaleX: 1,
+            transition: {
+                duration: .5,
+                ease: [.12, 0, .39, 0]
+            }
+        },
+        exit: {
+            scaleX: 0,
+            transition: {
+                delay: .5,
+                duration: .5,
+                ease: [.12, 1, .39, 1]
+            }
+        }
+    };
+    const containerVars = {
+        initial: {
+            transition: {
+                staggerChildren: .09,
+                staggerDirection: -1
+            },
+        }, 
+        open: {
+            transition: {
+                delayChildren: .3,
+                staggerChildren: .09,
+                staggerDirection: 1
+            },
+        }
+    };
 
     useEffect(() => {
         if (menuOpen) {
             document.body.style.overflow = "hidden";
-
-            tlNav
-                .from(overflowRef.current, {
-                    duration: 1,
-                    xPercent: 130,
-                    ease: "power3.out",
-                })
-                .from(navRef.current, {
-                    duration: 1,
-                    xPercent: 130,
-                    delay: -1,
-                    ease: "power3.out",
-                })
-
         } else {
             document.body.style.overflow = "";
-
-            tlNav.to(navRef.current, {
-                duration: 10,
-                xPercent: 130,
-                ease: "power3.inOut",
-            });
         }
         return () => {
             document.body.style.overflow = "";
         };
     }, [menuOpen]);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+
 
     return (
         <>
             <nav className="hidden lg:block bg-neutral-900 px-4 py-8 rounded-full border border-neutral-600 z-50 fixed right-6 top-1/2 -translate-y-1/2">
                 <ul className="flex flex-col gap-6">
-                    {links.map((link, index) => (
+                    {navLinks.map((link, index) => (
                         <li key={index} className="text-neutral-300 hover:text-intense-blue transition-all duration-500">
                             <Link href={`#${link.href}`}>
                                 <link.icon size={30} />
@@ -103,31 +116,75 @@ export const Menu = () => {
                     ))}
                 </ul>
             </nav>
-            <button className={`bg-intense-blue p-3 border border-neutral-600 rounded-full fixed top-4 right-4 md:hidden ${menuOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
+            <button
+                className={`bg-intense-blue p-3 border border-neutral-600 rounded-full fixed top-4 right-4 lg:hidden ${menuOpen ? 'hidden' : 'block'}`}
+                onClick={toggleMenu}>
                 <VscMenu size={25} />
             </button>
-            {menuOpen &&
-                <>
-                    <div ref={overflowRef} className="w-full h-full fixed right-0 top-0 bg-intense-blue bg-opacity-50 z-40"></div>
-                    <nav ref={navRef}
-                        className={`fixed top-0 right-0 w-4/5 h-full bg-neutral-900 p-10 z-50`}
-                    >
-                        <ul className="flex flex-col gap-10">
-                            {links.map((link, index) => (
-                                <li key={index}
-                                    className="text-neutral-300 hover:text-intense-blue transition-all duration-500">
-                                    <Link href={`#${link.href}`} onClick={toggleMenu} className="flex items-center">
-                                        <link.icon size={30} className="mr-4" /> {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <button className="absolute top-8 right-8 text-white" onClick={toggleMenu}>
-                            <VscChromeClose size={30} />
-                        </button>
-                    </nav>
-                </>
-            }
+            <AnimatePresence>
+                {menuOpen && (
+                    <>
+                        <motion.div
+                            variants={menuVars}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            className="fixed right-0 top-0 origin-right w-full h-full bg-intense-blue bg-opacity-50 z-40"></motion.div>
+                        <motion.nav
+                            variants={menuVars}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            className={`fixed top-0 right-0 origin-right flex justify-start w-4/5 h-full bg-neutral-900 py-20 px-10 z-50`}>
+                            <motion.div
+                                variants={containerVars}
+                                initial="initial"
+                                animate="open"
+                                exit="initial"
+                                className="flex flex-col gap-8">
+                                {navLinks.map((link, index) => (
+                                    <div className="overflow-hidden flex justify-start">
+                                        <MobileNavLink key={index} icon={link.icon} label={link.label} href={link.href} />
+                                    </div>
+                                ))}
+                            </motion.div>
+
+                            <button className="absolute top-8 right-8 text-white" onClick={toggleMenu}>
+                                <VscChromeClose size={30} />
+                            </button>
+                        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
+
         </>
+    )
+}
+
+const mobileNavLinkVars = {
+    initial: {
+        x: "50vw",
+        transition: {
+            duration: .5,
+            ease: [.37, 0, .63, 1]
+        }
+    }, open: {
+        x: 0,
+        transition: {
+            duration: .7,
+            ease: [0, .55, .45, 1]
+        }
+    }
+}
+const MobileNavLink = ({ label, icon, href }: LinkItem) => {
+    const IconComponent = icon;
+    return (
+        <motion.div
+            variants={mobileNavLinkVars}
+            className="p-2">
+            <Link href={`#${href}`} className="font-victor text-2xl flex hover:text-intense-blue transition-all duration-500">
+                <IconComponent size={30} className="mr-4" />  {label}
+            </Link>
+        </motion.div>
     )
 }

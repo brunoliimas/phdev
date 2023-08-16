@@ -12,6 +12,9 @@ const config: Config = {
       padding: '1.5rem'
     },
     extend: {
+      fontFamily:{ 
+        victor: ["var(--font-victor)"]
+      },
       animation: {
         'spin-slow': 'spin 6s linear infinite',
       },
