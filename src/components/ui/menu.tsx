@@ -18,32 +18,32 @@ interface LinkItem {
 const navLinks: LinkItem[] = [
     {
         icon: AiOutlineHome,
-        label: "Home",
+        label: "Introdução",
         href: "intro",
     },
     {
         icon: BsPerson,
-        label: "About",
+        label: "Sobre",
         href: "about",
     },
     {
         icon: BsBriefcase,
-        label: "Resume",
+        label: "Currículo",
         href: "resume",
     },
     {
         icon: LiaStreamSolid,
-        label: "Services",
+        label: "Serviços",
         href: "services",
     },
     {
         icon: PiShapes,
-        label: "Skills",
+        label: "Habilidades",
         href: "skills",
     },
     {
         icon: BsFileCode,
-        label: "Projects",
+        label: "Projetos",
         href: "projects",
     },
 ];
