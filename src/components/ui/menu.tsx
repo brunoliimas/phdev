@@ -143,8 +143,8 @@ export const Menu = () => {
                                 exit="initial"
                                 className="flex flex-col gap-8">
                                 {navLinks.map((link, index) => (
-                                    <div className="overflow-hidden flex justify-start">
-                                        <MobileNavLink key={index} icon={link.icon} label={link.label} href={link.href} />
+                                    <div key={index} className="overflow-hidden flex justify-start">
+                                        <MobileNavLink icon={link.icon} label={link.label} href={link.href} />
                                     </div>
                                 ))}
                             </motion.div>
