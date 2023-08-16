@@ -13,6 +13,7 @@ interface LinkItem {
     icon: React.ElementType;
     label: string;
     href: string;
+    click?: () => void; 
 }
 
 const navLinks: LinkItem[] = [
@@ -80,7 +81,7 @@ export const Menu = () => {
                 staggerChildren: .09,
                 staggerDirection: -1
             },
-        }, 
+        },
         open: {
             transition: {
                 delayChildren: .3,
@@ -144,7 +145,7 @@ export const Menu = () => {
                                 className="flex flex-col gap-8">
                                 {navLinks.map((link, index) => (
                                     <div key={index} className="overflow-hidden flex justify-start">
-                                        <MobileNavLink icon={link.icon} label={link.label} href={link.href} />
+                                        <MobileNavLink icon={link.icon} label={link.label} href={link.href} click={toggleMenu} />
                                     </div>
                                 ))}
                             </motion.div>
@@ -176,13 +177,13 @@ const mobileNavLinkVars = {
         }
     }
 }
-const MobileNavLink = ({ label, icon, href }: LinkItem) => {
+const MobileNavLink = ({ label, icon, href, click }: LinkItem) => {
     const IconComponent = icon;
     return (
         <motion.div
             variants={mobileNavLinkVars}
             className="p-2">
-            <Link href={`#${href}`} className="font-victor text-2xl flex hover:text-intense-blue transition-all duration-500">
+            <Link href={`#${href}`} className="font-victor text-2xl flex hover:text-intense-blue transition-all duration-500" onClick={click}>
                 <IconComponent size={30} className="mr-4" />  {label}
             </Link>
         </motion.div>
