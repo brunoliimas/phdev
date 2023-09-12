@@ -5,9 +5,8 @@ interface TitleSectionProps {
 
 export const TitleSection = ({ title, span }: TitleSectionProps) => {
     return (
-        <h2 className="text-3xl lg:text-5xl leading-tight mb-8">
-            {title} 
-            <span className="text-intense-blue">{span}</span>
+        <h2 className="text-3xl leading-snug lg:leading-snug lg:text-5xl mb-8">
+            {title} <span className="text-intense-blue">{span}</span>
         </h2>
     )
 }

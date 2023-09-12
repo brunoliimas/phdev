@@ -164,7 +164,7 @@ export const Menu = () => {
 
 const mobileNavLinkVars = {
     initial: {
-        x: "50vw",
+        x: "100vw",
         transition: {
             duration: .5,
             ease: [.37, 0, .63, 1]
