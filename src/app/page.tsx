@@ -14,7 +14,7 @@ import { Menu } from "@/components/ui/menu"
 export default function Home() {
   return (
     <>
-      <Background />
+      {/* <Background /> */}
       <Menu />
       <Profile />
       <div className="lg:ml-[410px] lg:mr-20">

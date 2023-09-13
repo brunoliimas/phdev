@@ -106,7 +106,7 @@ export const Menu = () => {
 
     return (
         <>
-            <nav className="hidden lg:block bg-neutral-900 px-4 py-8 rounded-full border border-neutral-600 z-50 fixed right-6 top-1/2 -translate-y-1/2">
+            <nav className="hidden lg:block bg-neutral-900 px-4 py-8 rounded-full border border-neutral-600 z-40 fixed right-6 top-1/2 -translate-y-1/2">
                 <ul className="flex flex-col gap-6">
                     {navLinks.map((link, index) => (
                         <li key={index} className="text-neutral-300 hover:text-intense-blue transition-all duration-500">

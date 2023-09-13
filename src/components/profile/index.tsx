@@ -7,12 +7,31 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiLogoGithub, BiLogoInstagram, BiLogoLinkedin, BiLogoWhatsapp } from "react-icons/bi";
 import { FiMail } from "react-icons/fi";
+import { IoMdSettings } from "react-icons/io";
+import Settings from "../settings";
+import { Background } from "../ui/background";
 
 
 
 
 export default function Profile() {
     const [userData, setUserData] = useState<UserData | null>(null);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [backgroundVideo, setBackgroundVideo] = useState<string>("/background/background-video-01.mp4");
+
+    const openSettings = () => {
+        setIsSettingsOpen(true);
+    };
+
+    useEffect(() => {
+        // Verificar se existe um vídeo no localStorage
+        const cachedVideoSrc = localStorage.getItem('backgroundVideo');
+
+        if (cachedVideoSrc) {
+            // Use o vídeo do localStorage como fundo
+            setBackgroundVideo(cachedVideoSrc);
+        }
+    }, []);
 
     useEffect(() => {
         client
@@ -33,7 +52,13 @@ export default function Profile() {
 
     return (
         <>
+            <Background videoSrc={backgroundVideo} />
             <div className="mt-20 lg:mt-0 w-full flex flex-col items-center justify-center lg:fixed lg:left-4 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-sm border border-neutral-600 rounded-3xl p-8">
+
+                <button onClick={openSettings} className="absolute -top-1 -left-1 bg-neutral-900 border border-neutral-600 p-1 rounded-full animate-spin-slow">
+                    <IoMdSettings size={24} />
+                </button>
+
                 <div className="w-full flex justify-between mb-9">
                     <Image
                         src="/profile/logo_PHDev.svg"
@@ -114,6 +139,16 @@ export default function Profile() {
                     </a>
                 </button>
             </div>
+            {isSettingsOpen && (
+                <Settings
+                    videoSrc={backgroundVideo}
+                    isOpen={isSettingsOpen}
+                    onClose={() => setIsSettingsOpen(false)}
+                    onUpdateBackground={(videoSrc) => {
+                        setBackgroundVideo(videoSrc);
+                    }}
+                />
+            )}
         </>
     );
 }
