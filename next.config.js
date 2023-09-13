@@ -4,6 +4,6 @@ const nextConfig = {};
 module.exports = {
     nextConfig,
     images: {
-        domains: ["avatars.githubusercontent.com"],
+        domains: ["media.graphassets.com"],
     },
 };

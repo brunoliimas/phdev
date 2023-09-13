@@ -40,7 +40,10 @@ export default function Profile() {
             })
             .then((response) => {
                 const { data } = response;
-                setUserData(data.user); // Assuming it's an array of users, adjust as needed
+                console.log(data);
+                console.log(data.profiles[0].photo.url);
+
+                setUserData(data.profiles[0]);
             });
     }, []);
 
@@ -67,20 +70,20 @@ export default function Profile() {
                         alt="PH.Dev"
                     />
                     <span className="max-w-[150px] text-right">
-                        Back End e Mobile Developer
+                    {userData.position}
                     </span>
                 </div>
-                <div className="flex justify-center items-center max-w-xs bg-intense-blue p-4 rounded-3xl mb-8">
+                <div className="flex justify-center items-center max-w-xs bg-intense-blue p-4 pb-0 rounded-3xl mb-8">
                     <Image
-                        src={userData.picture}
+                        src={userData.photo.url}
                         width={200}
                         height={200}
-                        alt="avatar"
+                        alt={userData.name}
                     />
                 </div>
                 <div className="text-center">
                     <h2 className="text-3xl mb-2">{userData.name}</h2>
-                    <h2 className="text-2xl mb-8">São Paulo/SP</h2>
+                    <h2 className="text-2xl mb-8">{userData.city}</h2>
                     <p className="text-sm mb-6 opacity-50">
                         © 2023 PH.Dev - Todos os direitos reservados
                     </p>

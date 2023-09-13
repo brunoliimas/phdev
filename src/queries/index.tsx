@@ -2,17 +2,33 @@ import { gql } from '@apollo/client';
 
 export const GET_PROFILE_QUERY = gql`
     query {
-        user (where: { id: "cllzz6qm90fhs01ug6wws492y" }){
+        profiles {
+            photo {
+                url
+            }
             name
-            picture
+            city
+            position
         }
     }
 `;
-
+export const GET_INTRO_QUERY = gql`
+    query {
+        introductions {
+            title
+            span
+            position
+            description
+            years_experience
+            finished_projects
+        }
+    }
+`;
 export const GET_ABOUT_QUERY = gql`
 query {
     abouts {
         title
+        span
         description
     }
 }

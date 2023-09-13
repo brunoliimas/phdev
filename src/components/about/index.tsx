@@ -34,7 +34,7 @@ export default function About() {
             <div className="container">
                 <div className="flex flex-col items-start">
                     <Tag title='Sobre' icon={BsPerson} />
-                    <TitleSection title={aboutData.title} span="história ainda melhor" />
+                    <TitleSection title={aboutData.title} span={aboutData.span} />
                     <p className="max-w-3xl mb-4">{aboutData.description}</p>
                 </div>
             </div>
