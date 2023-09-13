@@ -66,12 +66,7 @@ export default function Settings({ onClose, isOpen, onUpdateBackground, videoSrc
                         >
                             Water Waves
                         </button>
-                        <button
-                            className="border border-neutral-300 flex items-center justify-center py-2 px-4 rounded-full"
-                            onClick={() => handleBackgroundClick("/background/background-video-04.mp4")}
-                        >
-                            Rain of balls
-                        </button>
+                        
                         <button
                             className="border border-neutral-300 flex items-center justify-center py-2 px-4 rounded-full"
                             onClick={() => handleBackgroundClick("/background/background-video-05.mp4")}
